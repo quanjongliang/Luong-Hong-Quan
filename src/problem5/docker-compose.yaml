@@ -1,0 +1,41 @@
+version: "3.9"
+
+services:
+  99_app:
+    container_name: 99_app
+    build:
+      context: .
+    environment:
+      - PG_DB=99
+      - PG_USER=user
+      - PG_PASSWORD=pass
+      - PG_HOST=host.docker.internal
+      - PG_PORT=55432
+    ports:
+      - "3000:3000"
+    depends_on:
+      99_db:
+        condition: service_healthy
+    volumes:
+      - ./:/app
+      - /app/node_modules
+    command: bash -c
+      "npm run migrate:up &&
+      npm run build && npm run dev"
+    links:
+      - 99_db
+
+  99_db:
+    container_name: 99_db
+    image: postgres:12
+    ports:
+      - "55432:5432"
+    environment:
+      - POSTGRES_DB=99
+      - POSTGRES_USER=user
+      - POSTGRES_PASSWORD=pass
+    healthcheck:
+      test: ["CMD-SHELL", "sh -c 'pg_isready -U user -d 99'"]
+      interval: 10s
+      timeout: 10s
+      retries: 5
