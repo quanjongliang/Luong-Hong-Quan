@@ -78,8 +78,8 @@ curl --location 'http://localhost:3000/api/resources' \
 ```json
 {
   "data": {
-    "id": 16,
-    "name": "asdasdas",
+    "id": 1,
+    "name": "resource name",
     "updatedAt": "2024-08-05T08:30:50.127Z",
     "createdAt": "2024-08-05T08:30:50.127Z"
   },
@@ -192,4 +192,5 @@ curl --location --request DELETE 'http://localhost:3000/api/resources/1'
   "meta": {}
 }
 ```
+
 # Luong-Hong-Quan
