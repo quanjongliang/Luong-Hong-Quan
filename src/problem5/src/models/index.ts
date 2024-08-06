@@ -2,9 +2,6 @@ import { Sequelize } from "sequelize";
 import { ResourceModel } from "./resource.model";
 import dotenv from "dotenv";
 dotenv.config();
-// const sequelize = new Sequelize(
-//   "postgresql://challengedb_owner:ZAXc3gPy5OQp@ep-tight-snowflake-a51a95r1.us-east-2.aws.neon.tech/challengedb?sslmode=require"
-// );
 
 export type Db = {
   resources: ReturnType<typeof ResourceModel>;
